@@ -12,16 +12,17 @@ public class Player : MonoBehaviour
     private float horizonalInput;
     private float verticalInput;
 
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
-       
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {     
         horizonalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -29,6 +30,11 @@ public class Player : MonoBehaviour
         if(verticalInput != 0 )
         {
             transform.position += transform.forward * speed * verticalInput;
+            animator.SetBool("Walk", true);
+        }
+        else 
+        {
+            animator.SetBool("Walk", false);
         }
 
         //‰ñ“]
