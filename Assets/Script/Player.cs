@@ -18,7 +18,9 @@ public class Player : MonoBehaviour
     //鍵を入手
     private bool GetKeyflg;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// スタート
+    /// </summary>
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -26,9 +28,11 @@ public class Player : MonoBehaviour
         GetKeyflg = false;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// 更新
+    /// </summary>
     void Update()
-    {     
+    {
         horizonalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -47,20 +51,25 @@ public class Player : MonoBehaviour
         transform.Rotate(new Vector3(0.0f, rotateSpeed * horizonalInput, 0.0f));
     }
 
-    //オブジェクトに当たった時
+    /// <summary>
+    /// オブジェクトに当たった際
+    /// </summary>
+    /// <param name="collision">当たったオブジェクトの情報</param>
     private void OnCollisionEnter(Collision collision)
     {
         //ゲートの場合
         if (collision.gameObject.name == "Gate" && GetKeyflg)
         {
-            Debug.Log("GATE HIT");
             GameManager.GameCrear = true;
         }
         //鍵の場合
-        if(collision.gameObject.name =="Key")
+        if (collision.gameObject.name == "Key")
         {
             Debug.Log("KEY HIT");
             GetKeyflg = true;
+            //鍵を削除
+            GameObject key = GameObject.Find("Key");
+            Destroy(key);
         }
     }
 }

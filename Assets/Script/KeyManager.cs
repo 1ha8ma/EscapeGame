@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class KeyManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// 更新
+    /// </summary>
+    public void Update()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //回転(Space.Worldはワールド座標を基準にした回転)
+        Transform mytransform = transform;
+        mytransform.Rotate(0.0f, 0.1f, 0.0f, Space.World);
     }
 }

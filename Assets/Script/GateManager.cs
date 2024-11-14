@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class GateManager : MonoBehaviour
 {
-    private float vx = -0.03f;
+    private float vx = -0.03f;//移動速度
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+   /// <summary>
+   /// 更新
+   /// </summary>
     void Update()
     {
         //クリアしていたら左にずらす
