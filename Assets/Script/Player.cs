@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Player : MonoBehaviour
     private Animator animator = null;
 
     //鍵を入手
-    private bool GetKeyflg;
+    private int GetKeyNum;
 
     /// <summary>
     /// スタート
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        GetKeyflg = false;
+        GetKeyNum = 0;
     }
 
     /// <summary>
@@ -58,18 +59,48 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //ゲートの場合
-        if (collision.gameObject.name == "Gate" && GetKeyflg)
+        if (collision.gameObject.name == "Gate" && GetKeyNum == 5)
         {
             GameManager.GameCrear = true;
         }
         //鍵の場合
-        if (collision.gameObject.name == "Key")
+        if (collision.gameObject.name == ("Key1")|| collision.gameObject.name == ("Key2")|| collision.gameObject.name == ("Key3")|| collision.gameObject.name == ("Key4")|| collision.gameObject.name == ("Key5"))
         {
             Debug.Log("KEY HIT");
-            GetKeyflg = true;
+            GetKeyNum++;
             //鍵を削除
-            GameObject key = GameObject.Find("Key");
-            Destroy(key);
+            if (collision.gameObject.name == ("Key1"))
+            {
+                GameObject key = GameObject.Find("Key1");
+                Destroy(key);
+            }
+            if (collision.gameObject.name == ("Key2"))
+            {
+                GameObject key = GameObject.Find("Key2");
+                Destroy(key);
+            }
+            if (collision.gameObject.name == ("Key3"))
+            {
+                GameObject key = GameObject.Find("Key3");
+                Destroy(key);
+            }
+            if (collision.gameObject.name == ("Key4"))
+            {
+                GameObject key = GameObject.Find("Key4");
+                Destroy(key);
+            }
+            if (collision.gameObject.name == ("Key5"))
+            {
+                GameObject key = GameObject.Find("Key5");
+                Destroy(key);
+            }
+        }
+        //UFOの場合
+        if(collision.gameObject.name =="UFO")
+        {
+            Debug.Log("UFO HIT");
+            //ゲームオーバー
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }
