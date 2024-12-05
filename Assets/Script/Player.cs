@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
         //ゲートの場合
         if (collision.gameObject.name == "Gate" && GetKeyNum == 5)
         {
+            
             GameManager.GameCrear = true;
         }
         //鍵の場合
@@ -96,7 +97,7 @@ public class Player : MonoBehaviour
             }
         }
         //UFOの場合
-        if(collision.gameObject.name =="UFO")
+        if (collision.gameObject.name == "UFO1" || collision.gameObject.name == "UFO2")
         {
             Debug.Log("UFO HIT");
             //ゲームオーバー
